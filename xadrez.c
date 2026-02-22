@@ -30,6 +30,35 @@ void tabuleiro(int num, char caractere){
     printf("\n=========================================================================\n");
 }
 
+void bispoRecursivo(int i, int limite){
+    if (i > limite){
+        return;
+    }
+
+    printf("\nBispo: %d casa na diagonal", i);
+    bispoRecursivo(i + 1, limite);
+}
+
+void movimentoCavalo(){
+    int horizontal, vertical;
+
+    for (horizontal = -2; horizontal <= 2; horizontal++){
+        for (vertical = -2; vertical <= 2; vertical++){
+
+            
+            if (horizontal == 0 && vertical == 0)
+                continue;
+
+            if ((horizontal * horizontal + vertical * vertical) == 5){
+                printf("Cavalo move: %d horizontal, %d vertical\n", horizontal, vertical);
+            }
+
+            if (horizontal == 2)
+                break;
+        }
+    }
+}
+
 void funcBispo(int i, int casaBispo){
     do
     {
@@ -74,13 +103,17 @@ int main() {
     // Implementação de Movimentação da Torre
     // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
     funcTorre(i, casaTorre);
+
+
     // Implementação de Movimentação da Rainha
     // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
     funcRainha(i, casaRainha);
+
+
     // Nível Aventureiro - Movimentação do Cavalo
     // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
     // Um loop pode representar a movimentação horizontal e outro vertical.
-
+    movimentoCavalo();
     // Nível Mestre - Funções Recursivas e Loops Aninhados
     // Sugestão: Substitua as movimentações das peças por funções recursivas.
     // Exemplo: Crie uma função recursiva para o movimento do Bispo.
