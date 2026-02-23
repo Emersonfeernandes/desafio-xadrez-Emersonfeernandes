@@ -22,26 +22,20 @@ void funcCavalo(char direcao1, char direcao2){
     case 'F':
     case 'f':
         if (direcao2 == 'D' || direcao2 == 'd'){
+            vertical = 1;
             for (horizontal = 1; horizontal <= 1; horizontal++){
-                for (vertical = 1; vertical <= 2; vertical++){
-        
-                    
-                    if (horizontal == 0 && vertical == 0)
-                        continue;
-
-                        printf("Cavalo: %d vertical\n", vertical);        
+                while (vertical <= 2){
+                    printf("Cavalo: %d vertical\n", vertical);
+                    vertical++;      
                 }
                 printf("Cavalo: %d horizontal direita\n", horizontal);
             }
         } else if (direcao2 == 'E' || direcao2 == 'e'){
+            vertical = 1;
             for (horizontal = 1; horizontal <= 1; horizontal++){
-                for (vertical = 1; vertical <= 2; vertical++){
-        
-                    
-                    if (horizontal == 0 && vertical == 0)
-                        continue;
-
-                        printf("Cavalo: %d vertical\n", vertical);        
+                while (vertical <= 2){
+                    printf("Cavalo: %d vertical\n", vertical);
+                    vertical++;      
                 }
                 printf("Cavalo: %d horizontal esquerda\n", horizontal);
             }
@@ -50,15 +44,11 @@ void funcCavalo(char direcao1, char direcao2){
     case 'D':
     case 'd':
         if (direcao2 == 'F' || direcao2 == 'f')
-
+        horizontal = 1;
         for (vertical = 1; vertical <= 1; vertical++){
-            for (horizontal = 1; horizontal <= 2; horizontal++){
-    
-                
-                if (horizontal == 0 && vertical == 0)
-                    continue;
-
-                    printf("Cavalo: %d horizontal direita \n", horizontal);        
+            while (horizontal <= 2){
+                    printf("Cavalo: %d horizontal direita \n", horizontal);
+                    horizontal++;       
             }
             printf("Cavalo: %d vertical\n", vertical);
         }
@@ -66,15 +56,11 @@ void funcCavalo(char direcao1, char direcao2){
     case 'E':
     case 'e':
         if (direcao2 == 'F' || direcao2 == 'f')            
-        
+        horizontal = 1;
         for (vertical = 1; vertical <= 1; vertical++){
-            for (horizontal = 1; horizontal <= 2; horizontal++){
-    
-                
-                if (horizontal == 0 && vertical == 0)
-                    continue;
-
-                    printf("Cavalo: %d horizontal esquerda\n", horizontal);        
+            while (horizontal <= 2){
+                    printf("Cavalo: %d horizontal esquerda\n", horizontal);
+                    horizontal++;      
             }
             printf("Cavalo: %d vertical\n", vertical);
         }
@@ -131,6 +117,11 @@ void funcRainha(int i, char direcao){
             case 't':
                 printf("\nRainha: %d casa para trás ", x);
                 break;
+
+            case 'B':
+            case 'b':
+                printf("\nRainha: %d casa na diagonal ", x);
+                break;
             
             default:
                 break;
@@ -180,6 +171,7 @@ int main() {
     char peca, direcao;
     
     do {
+        printf("\n### Escolha as peças ###\n");
         printf("\nR - Rainha\nB - Bispo\nT - Torre\nC - Cavalo\nS - Sair\n");
         scanf(" %c", &peca);
 
@@ -187,7 +179,8 @@ int main() {
         {
             case 'r':
             case 'R':
-                printf("\nDigite quantas casas\nD para direita\nE para esquerda\nF para frente\nT para trás\n");
+                printf("\nDigite quantas casas\nD para direita\n");
+                printf("E para esquerda\nF para frente\nT para trás\nB - na diagonal\n");
                 scanf("%d %c", &casaRainha, &direcao);
                 funcRainha(casaRainha, direcao);
                 break;
