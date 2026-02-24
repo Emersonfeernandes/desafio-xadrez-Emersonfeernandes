@@ -4,57 +4,40 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
-// Função para Movimentação da Peça "Cavalo" usando for e while
+// Função para Movimentação da Peça "Cavalo" usando Loops com múltiplas variáveis
 void funcCavalo(char direcao1, char direcao2){
-    int horizontal, vertical;
+    int h, v;
 
     switch (direcao1)
     {
         case 'F':
         case 'f':
             if (direcao2 == 'D' || direcao2 == 'd'){
-                vertical = 1;
-                for (horizontal = 1; horizontal <= 1; horizontal++){
-                    while (vertical <= 2){
-                        printf("Cavalo: %d vertical\n", vertical);
-                        vertical++;      
-                    }
-                    printf("Cavalo: %d horizontal direita\n", horizontal);
+                for (v = 1, h = 3; v <= h; v++, h--){
+                    printf("Cavalo: %d casa para cima \n", v);
                 }
+                printf("Cavalo: %d casa para direita \n", h);
             } else if (direcao2 == 'E' || direcao2 == 'e'){
-                vertical = 1;
-                for (horizontal = 1; horizontal <= 1; horizontal++){
-                    while (vertical <= 2){
-                        printf("Cavalo: %d vertical\n", vertical);
-                        vertical++;      
-                    }
-                    printf("Cavalo: %d horizontal esquerda\n", horizontal);
+                for (v = 1, h = 3; v <= h; v++, h--){
+                    printf("Cavalo: %d casa para cima \n", v);
                 }
+                printf("Cavalo: %d casa para esquerda \n", h);
             }
             break;
         case 'D':
         case 'd':
-            if (direcao2 == 'F' || direcao2 == 'f')
-            horizontal = 1;
-            for (vertical = 1; vertical <= 1; vertical++){
-                while (horizontal <= 2){
-                        printf("Cavalo: %d horizontal direita \n", horizontal);
-                        horizontal++;       
-                }
-                printf("Cavalo: %d vertical\n", vertical);
+            for (h = 1, v = 3; h <= v; h++, v--){
+                printf("Cavalo: %d casa para direita \n", h);
             }
+            printf("Cavalo: %d casa para cima \n", v);
+            
             break;
         case 'E':
         case 'e':
-            if (direcao2 == 'F' || direcao2 == 'f')            
-            horizontal = 1;
-            for (vertical = 1; vertical <= 1; vertical++){
-                while (horizontal <= 2){
-                        printf("Cavalo: %d horizontal esquerda\n", horizontal);
-                        horizontal++;      
-                }
-                printf("Cavalo: %d vertical\n", vertical);
+            for (h = 1, v = 3; h <= v; h++, v--){
+                printf("Cavalo: %d casa para esquerda \n", h);
             }
+            printf("Cavalo: %d casa para cima \n", v);
             break;
         default:
             printf("\n### ENTRADA INVÁLIDA ###\n");
@@ -63,42 +46,42 @@ void funcCavalo(char direcao1, char direcao2){
 }
 
 // Função para Movimentação da Peça "Rainha" usando do-while
-void funcRainha(int i, char direcao){
-    int x = 1;
+void funcRecursivoRainha(int i, int limite, char direcao){
+    if (i > limite){
+        return;
+    }
 
-    do
+    switch (direcao)
     {
-        switch (direcao)
-        {
-            case 'D':
-            case 'd':
-                printf("\nRainha: %d casa para direita ", x);
-                break;
-            case 'E':
-            case 'e':
-                printf("\nRainha: %d casa para esquerda ", x);
-                break;
-            case 'F':
-            case 'f':
-                printf("\nRainha: %d casa para frente ", x);
-                break;
+        case 'D':
+        case 'd':
+            printf("\nRainha: %d casa para direita ", i);
+            break;
+        case 'E':
+        case 'e':
+            printf("\nRainha: %d casa para esquerda ", i);
+            break;
+        case 'F':
+        case 'f':
+            printf("\nRainha: %d casa para frente ", i);
+            break;
 
-            case 'T':
-            case 't':
-                printf("\nRainha: %d casa para trás ", x);
-                break;
+        case 'T':
+        case 't':
+            printf("\nRainha: %d casa para trás ", i);
+            break;
 
-            case 'B':
-            case 'b':
-                printf("\nRainha: %d casa na diagonal ", x);
-                break;
-            
-            default:
-                printf("\n### ENTRADA INVÁLIDA ###\n");
-                break;
-        }
-        x++;
-    } while (x <= i);
+        case 'B':
+        case 'b':
+            printf("\nRainha: %d casa na diagonal ", i);
+            break;
+        
+        default:
+            printf("\n### ENTRADA INVÁLIDA ###\n");
+            break;
+    }
+
+    funcRecursivoRainha(i + 1, limite, direcao);
 }
 
 // Função para Movimentação da Peça "Bispo" usando recursividade
@@ -188,7 +171,7 @@ int main() {
                 printf("\nDigite quantas casas\nD para direita\n");
                 printf("E para esquerda\nF para frente\nT para trás\nB - na diagonal\n");
                 scanf("%d %c", &casaRainha, &direcao);
-                funcRainha(casaRainha, direcao);
+                funcRecursivoRainha(i, casaRainha, direcao);
                 break;
 
             case 't':
